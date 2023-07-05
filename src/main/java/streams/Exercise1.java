@@ -1,6 +1,7 @@
 package streams;
 
-import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Exercise1 {
@@ -23,10 +24,10 @@ public class Exercise1 {
     }
 
     public Stream<String> firstNameOfUsersWithIds(Stream<User> userStream, Stream<Integer> idStream) {
-        List<Integer> idList = idStream.toList();
+        Set<Integer> idSet = idStream.collect(Collectors.toSet());
 
         return userStream
-                .filter(user -> idList.contains(user.getId()))
+                .filter(user -> idSet.contains(user.getId()))
                 .map(User::getFirstName);
     }
 }
